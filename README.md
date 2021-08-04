@@ -12,9 +12,7 @@ This action will look for a [`retype.json`](https://retype.com/configuration/pro
 
 ## Prerequisites
 
-We highly recommend configuring the [actions/setup-dotnet](https://github.com/actions/setup-dotnet) step before `retypeapp/action-build`. This will install the tiny `dotnet` Retype package instead of the larger self-contained NPM package.
-
-Both the `dotnet` and `npm` packages run the exact same version of Retype. The size of the `dotnet` package is much smaller, so the action will setup faster.
+While not required, it is highly recommended to include the [actions/setup-dotnet](https://github.com/actions/setup-dotnet) step before `retypeapp/action-build`. With this, the Build Action can install the tiny `dotnet` Retype package. If this is not included though, the action will still work, using instead the -- much larger -- NPM package, which would mean extra workflow setup time.
 
 ## Usage
 
@@ -28,6 +26,12 @@ steps:
 
 - uses: retypeapp/action-build
 ```
+
+### Why the `setup-dotnet` step
+
+It is highly recommended to include the [actions/setup-dotnet](https://github.com/actions/setup-dotnet) step before `retypeapp/action-build`. With this, the Build Action can install the `dotnet tool` Retype package.
+
+If this is not included though, the action will still work, using instead the NPM package, which would potentially lead to extra workflow setup time. This is expected because the NPM package is much larger in size than the `dotnet tool` one.
 
 ## Inputs
 
